@@ -95,7 +95,7 @@ public class homeController {
         //model에는 addAttribute이다.
         model.addAttribute("data", data);
         
-        return "/WEB-INF/index/index.jsp";
+        return "index";
     }
     
 
