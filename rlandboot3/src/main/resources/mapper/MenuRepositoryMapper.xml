@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.rland.web.repository.MenuRepository">
+  
+  <!-- 컬럼이름 매핑  -->
+  	<resultMap id="menuResultMap" type="Menu">
+		  <result property="regDate" column="reg_date"/>
+		  <!-- column은 sql에서 오는 컬럼이고 이후
+		 	property로 Menu 자료형으로 들어온다-->
+	 	<result property="categoryId" column="category_id"/>
+	 	<result property="regMemberId" column="reg_member_id"/>
+	</resultMap>
+  
+  <!-- 아까는 한줄에 구현해야했는데, 이제 내려쓰기도 해도 되고부담이 없어! 주석도 돼! -->
+  <!--  resultType 대신에 resultMap을 이용해-->
+  
+  <select id="findAll" resultMap="menuResultMap"> 
+  <!-- resultType이 무엇이냐 modle을 넣어주자 -->
+	   	select *
+	  	from menu
+	  	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+	  	
+	  		<if test="query != null">
+	  		name like '%${query}%'
+	  		</if>
+	  		
+			<if test="price != null">	  		
+	  		and price > #{price}
+	  		</if>
+	  		
+			<if test="categoryId != null">	
+	  		and categoryId=#{categoryId}
+	  		</if>
+	  		
+ 		</trim>
+  		<if test="orderField != null">
+		order by ${orderField} ${orderDir}
+		</if>
+		<if test="size != null">
+		limit #{size} offset #{offset}
+		</if>
+		
+		
+  </select>
+  
+  
+    <select id="findAllByIds" resultMap="menuResultMap"> 
+  		select *
+  		from menu
+  		<where>
+			  		<!-- ids에서 꺼내서 id로 가 
+			  		"ID in (" 으로 시작부분 
+			  		출력되고, 콤마나오고 결국 ) 가 나와
+			  		컬렉션은 null일수는 없어! -->
+		    <foreach item="id2"  collection="ids"
+		        open="id in (" separator="," close=")">
+		          #{id2}
+		    </foreach>
+		  </where>
+  </select>
+  
+
+  <select id="findById" resultType="kr.co.rland.web.entity.Menu"> 
+  		select *
+  		from menu
+  		where id = #{id}
+  </select>
+  
+  <select id="count" resultType="Integer">
+  		select count(id) count from menu
+	  	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+  	
+  		<if test="query != null">
+  		name like '%${query}%'
+  		</if>
+  		
+		<if test="price != null">	  		
+  		and price > #{price}
+  		</if>
+  		
+		<if test="categoryId != null">	
+  		and categoryId=#{categoryId}
+  		</if>
+  		
+		</trim>
+		
+  </select>
+  
+  
+  <insert id="insert" parameterType="Menu">
+		insert into menu(name, price, img, category_id, reg_member_id)
+		value( #{name} , #{price} , #{img}, #{categoryId}, #{regMemberId})
+  </insert>
+  
+  
+  <update id="update" parameterType="Menu">
+  		update menu
+  		<trim prefix="SET" suffixOverrides=",">
+  			<if test="name != null">name=#{name},</if>
+			<if test="price != null">price=#{price},</if>
+			<if test="img != null">img=#{img}</if>						
+		</trim>
+		where id=#{id}
+  
+  </update>
+  
+  <!-- 이렇게 이제 쿼리문 만드는게 repo 구현이야! -->
+  <delete id="delete">
+  		delete from menu where id =${id}
+  </delete>
+  
+</mapper>
