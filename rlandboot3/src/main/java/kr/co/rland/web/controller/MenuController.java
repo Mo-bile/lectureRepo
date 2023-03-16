@@ -1,6 +1,7 @@
 package kr.co.rland.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class MenuController {
 
 	@RequestMapping("list")
-	public String list() {
+	public String list(Model model) {
 		
-		return "menulist";
-//		return "/WEB-INF/view/inc/layout.jsp";
+		model.addAttribute("data", "Hello");
+		
+		//이거하면 메인만 보이는애가 나와!
+		return "menu/list";
 	}
 
 	@RequestMapping("detail")
