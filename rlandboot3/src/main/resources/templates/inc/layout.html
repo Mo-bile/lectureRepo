@@ -1,9 +1,36 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://ultrq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link href="../css/reset.css" type="text/css" rel="stylesheet" >
+    <link href="../css/style.css" type="text/css" rel="stylesheet" >
+    <link href="../css/layout.css" type="text/css" rel="stylesheet" >
+    <link href="../css/header.css" type="text/css" rel="stylesheet" >
+    <link href="../css/footer.css" type="text/css" rel="stylesheet" >
+    <link href="../css/component/aside.css" type="text/css" rel="stylesheet" >
+    <link href="../css/component/cart-section.css" type="text/css" rel="stylesheet" >
+    <link href="../css/component/menu-category.css" type="text/css" rel="stylesheet" >
+    <link href="../css/component/menu-section.css" type="text/css" rel="stylesheet" >
+    <link href="../css/component/search-header.css" type="text/css" rel="stylesheet" >
+
+    <link href="../css/component/menu-detail.css" type="text/css" rel="stylesheet" >
+    <link href="../css/component/nutrition-info.css" type="text/css" rel="stylesheet" >
+
+    <link href="../css/component.css" type="text/css" rel="stylesheet" >
+    <link href="../css/buttons.css" type="text/css" rel="stylesheet" >
+    <link href="../css/icon.css" type="text/css" rel="stylesheet" >
+    <link href="../css/deco.css" type="text/css" rel="stylesheet" >
+
+    <link href="../css/utils.css" type="text/css" rel="stylesheet" >
+    <!--  -->    
 </head>
+
+
 <body>
 
 <!-- haeder부분 -->
@@ -12,13 +39,18 @@
 <!--속성 기반이라 무조건 태그를 써서 해야해!  
 그러다보니 구조가 중첩이 돼
 이런경우를 대비하기 위해서 replace를 쓸 수있어-->
-<div th:replace="">
+<!-- <div th:replace="">
 
-</div>
+</div> -->
+<div th:replace="~{inc/header}"></div>
+
 <!-- ----------------------------------------- -->
 <!-- main부분 -->
+<div layout:fragment="main"></div>
+
 <!-- ----------------------------------------- -->
 <!-- footer부분 -->
+<div th:replace="~{inc/footer}"></div>
 <!-- ----------------------------------------- -->
 
 

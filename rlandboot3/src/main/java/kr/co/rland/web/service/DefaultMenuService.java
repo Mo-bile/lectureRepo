@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.rland.web.entity.Menu;
+import kr.co.rland.web.entity.MenuView;
 import kr.co.rland.web.repository.MenuRepository;
 
 @Service
@@ -20,11 +21,6 @@ public class DefaultMenuService implements MenuService {
 		this.repository = repository;
 	}
 
-	@Override
-	public List<Menu> getList() {
-		
-		return repository.findAll(0,10,"",1,3000,"regDate","desc");
-	}
 
 //	@Transactional(propagation = )
 	@Override
@@ -42,6 +38,91 @@ public class DefaultMenuService implements MenuService {
 		
 		
 		
+	}
+
+	@Override
+	public List<Menu> getList() {
+		
+//		return repository.findAll(0,10,"",1,3000,"regDate","desc");
+		return repository.findAll(0,10,"",null,null,null,null);
+	}
+
+	@Override
+	public List<Menu> getList(int page) {
+		// TODO Auto-generated method stub
+		int size = 10;
+		List<Menu> list = repository.findAll(page,size,"",null,null,null,null);
+				
+		return list;
+	}
+
+	@Override
+	public List<Menu> getList(int page, String query) {
+		// TODO Auto-generated method stub
+		int size = 10;
+		List<Menu> list = repository.findAll(page,size,query,null,null,null,null);
+		
+		return list;
+	}
+
+	@Override
+	public List<Menu> getList(int page, int categoryId) {
+		int size = 10;
+		List<Menu> list = repository.findAll(page,size,"",categoryId,null,null,null);
+		
+		return list;
+	}
+
+	@Override
+	public List<Menu> getList(int page, int categoryId, String query) {
+		int size = 10;
+		List<Menu> list = repository.findAll(page,size,query,categoryId,null,null,null);
+		
+		return list;
+	}
+
+	
+	
+	
+	
+	@Override
+	public List<MenuView> getViewList() {
+		// TODO Auto-generated method stub
+		
+		return repository.findviewAll(0,10,"",null,null,null,null);
+	}
+
+	@Override
+	public List<MenuView> getViewList(int page) {
+		int size = 10;
+		List<MenuView> Viewlist = repository.findviewAll(page,10,null,null,null,null,null);
+				
+		return Viewlist;
+	}
+
+	@Override
+	public List<MenuView> getViewList(int page, String query) {
+		int size = 10;
+		List<MenuView> Viewlist = repository.findviewAll(page,size,query,null,null,null,null);
+		
+		return Viewlist;
+	}
+
+	@Override
+	public List<MenuView> getViewList(int page, int categoryId) {
+		int size = 10;
+		List<MenuView> Viewlist = repository.findviewAll(page,size,"",categoryId,null,null,null);
+		
+		return Viewlist;
+	}
+
+	@Override
+	public List<MenuView> getViewList(int page, int categoryId, String query) {
+		// TODO Auto-generated method stub
+		int size = 10;
+		List<MenuView> Viewlist = repository.findviewAll(page,size,query,categoryId,null,null,null);
+		
+		return Viewlist;
 	}
 
 }

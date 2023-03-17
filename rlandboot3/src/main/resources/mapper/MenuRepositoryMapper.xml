@@ -13,6 +13,13 @@
 	 	<result property="categoryId" column="category_id"/>
 	 	<result property="regMemberId" column="reg_member_id"/>
 	</resultMap>
+	
+  	<resultMap id="menuViewResultMap" type="MenuView">
+	  <result property="regDate" column="reg_date"/>
+	 	<result property="categoryId" column="category_id"/>
+	 	<result property="categoryName" column="category_name"/>
+	 	<result property="regMemberId" column="reg_Member_id"/>
+	</resultMap>
   
   <!-- 아까는 한줄에 구현해야했는데, 이제 내려쓰기도 해도 되고부담이 없어! 주석도 돼! -->
   <!--  resultType 대신에 resultMap을 이용해-->
@@ -46,8 +53,35 @@
 		
   </select>
   
+  <select id="findviewAll" resultMap="menuViewResultMap"> 
+  <!-- resultType이 무엇이냐 modle을 넣어주자 -->
+	   	select *
+	  	from menu_view
+	  	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+	  	
+	  		<if test="query != null">
+	  		name like '%${query}%'
+	  		</if>
+	  		
+			<if test="price != null">	  		
+	  		and price > #{price}
+	  		</if>
+	  		
+			<if test="categoryId != null">	
+	  		and categoryId=#{categoryId}
+	  		</if>
+	  		
+ 		</trim>
+  		<if test="orderField != null">
+		order by ${orderField} ${orderDir}
+		</if>
+		<if test="size != null">
+		limit #{size} offset #{offset}
+		</if>
+  </select>
   
-    <select id="findAllByIds" resultMap="menuResultMap"> 
+  
+   <select id="findAllByIds" resultMap="menuResultMap"> 
   		select *
   		from menu
   		<where>
