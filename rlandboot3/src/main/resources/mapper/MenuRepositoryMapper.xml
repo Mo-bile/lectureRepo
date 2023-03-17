@@ -68,7 +68,7 @@
 	  		</if>
 	  		
 			<if test="categoryId != null">	
-	  		and categoryId=#{categoryId}
+	  		and category_id=#{categoryId}
 	  		</if>
 	  		
  		</trim>

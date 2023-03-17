@@ -21,7 +21,7 @@ class DefaultMenuServiceTest {
 	void test() {
 //		service.pointUp();
 		
-		List<MenuView> list = service.getViewList();
+		List<MenuView> list = service.getViewList(1,1);
 		System.out.println(list);
 		System.out.println("작업완료");
 	}

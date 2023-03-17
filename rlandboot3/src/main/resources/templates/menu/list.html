@@ -58,83 +58,16 @@
 				<div class="icon icon-basket icon-text">1</div>
 			</section>
 
-			<section class="menu-section">
+<!-- 꺼내서 반복하면서 받아주는거야 -->
+			<section class="menu-section" th:each="menu : ${list}">
 		        <h1 class="d-none">메뉴목록</h1>
+		        
 		        <div class="menu-list">
 		            <section class="menu">
 		                <form class="">
-		                    <h1>알랜드 커피/<span>(커피)</span></h1> 
+		                    <h1><span th:text="${menu.name}">알랜드 커피</span><span style="font-size: 8px">(커피음료)</span></h1> 
 		                    <div class="menu-img-box">
 		                        <a href="detail"><img class="menu-img" src="/image/product/12.png"></a>
-		                    </div>    
-		                    <div class="menu-price">4500 원</div>
-		                    <div class="menu-option-list">
-		                        <span class="menu-option">
-		                            <input class="menu-option-input" type="checkbox">
-		                            <label>ICED</label>
-		                        </span>            
-		                        <span class="menu-option ml-2">
-		                            <input class="menu-option-input" type="checkbox">
-		                            <label>Large</label>
-		                        </span>
-		                    </div>
-		                    <div class="menu-button-list">
-		                        <input class="btn btn-fill btn-size-1 btn-size-1-lg" type="submit" value="담기">
-		                        <input class="btn btn-line btn-size-1 btn-size-1-lg ml-1" type="submit" value="주문하기">
-		                    </div>
-		                </form>
-		            </section>
-		            <section class="menu">
-		                <form class="">
-		                    <h1>알랜드 커피</h1> 
-		                    <div class="menu-img-box">
-		                        <img class="menu-img" src="/image/product/12.png">
-		                    </div>    
-		                    <div class="menu-price">4500 원</div>
-		                    <div class="menu-option-list">
-		                        <span class="menu-option">
-		                            <input class="menu-option-input" type="checkbox">
-		                            <label>ICED</label>
-		                        </span>            
-		                        <span class="menu-option ml-2">
-		                            <input class="menu-option-input" type="checkbox">
-		                            <label>Large</label>
-		                        </span>
-		                    </div>
-		                    <div class="menu-button-list">
-		                        <input class="btn btn-fill btn-size-1 btn-size-1-lg" type="submit" value="담기">
-		                        <input class="btn btn-line btn-size-1 btn-size-1-lg ml-1" type="submit" value="주문하기">
-		                    </div>
-		                </form>
-		            </section>
-		            <section class="menu">
-		                <form class="">
-		                    <h1>알랜드 커피</h1> 
-		                    <div class="menu-img-box">
-		                        <img class="menu-img" src="/image/product/12.png">
-		                    </div>    
-		                    <div class="menu-price">4500 원</div>
-		                    <div class="menu-option-list">
-		                        <span class="menu-option">
-		                            <input class="menu-option-input" type="checkbox">
-		                            <label>ICED</label>
-		                        </span>            
-		                        <span class="menu-option ml-2">
-		                            <input class="menu-option-input" type="checkbox">
-		                            <label>Large</label>
-		                        </span>
-		                    </div>
-		                    <div class="menu-button-list">
-		                        <input class="btn btn-fill btn-size-1 btn-size-1-lg" type="submit" value="담기">
-		                        <input class="btn btn-line btn-size-1 btn-size-1-lg ml-1" type="submit" value="주문하기">
-		                    </div>
-		                </form>
-		            </section>
-		            <section class="menu">
-		                <form class="">
-		                    <h1>알랜드 커피</h1> 
-		                    <div class="menu-img-box">
-		                        <img class="menu-img" src="/image/product/12.png">
 		                    </div>    
 		                    <div class="menu-price">4500 원</div>
 		                    <div class="menu-option-list">
