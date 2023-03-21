@@ -63,7 +63,8 @@ public class MenuController {
 	}
 
 	@RequestMapping("detail")	//주소와 같게 해주면
-	public String detail(long id, Model model) {
+	public String detail(
+			long id, Model model) {
 		
 		Menu menu = service.getById(id);
 		

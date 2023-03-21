@@ -23,9 +23,13 @@ class CategoryRepositoryTest {
 	@Test
 	void testFindAll() {
 		List<Category> list = repository.findAll();
-		Category category = list.get(0); //get 이뜨면 롬복성공
+//		Category category = list.get(0); //get 이뜨면 롬복성공
 		
+//		Category category = repository.findById(4);
 		System.out.println("작업완료");
+//		System.out.println(category);
+		
+//		System.out.println(category.getId());
 		System.out.println(list);
 	}
 

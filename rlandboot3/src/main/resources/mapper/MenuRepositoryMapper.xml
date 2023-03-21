@@ -98,9 +98,8 @@
   <select id="findById" resultType="Menu"> 
   		select *
   		from menu
-  		<where>
+  		where
   		id = #{id}
-  		</where>
   </select>
   
   <select id="count" resultType="Integer">

@@ -104,7 +104,7 @@ public class DefaultMenuService implements MenuService {
 		int offset = (page - 1) * 10 ; // 1(page)->0(offset) , 2->10, 3->20
 		
 //		첫번째 
-		List<MenuView> Viewlist = repository.findviewAll(page,10,null,null,null,null,null);
+		List<MenuView> Viewlist = repository.findviewAll(offset,10,null,null,null,null,null);
 				
 		return Viewlist;
 	}

@@ -9,6 +9,8 @@ public class Menu {
 	private String name;
 	private Integer price;
 	private String img;
+	
+	//새로 추가한 부분 
 	private String description;
 	
 //	@column("reg_Date")

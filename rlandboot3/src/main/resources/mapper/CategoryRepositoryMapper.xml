@@ -14,6 +14,13 @@
 		From category		
   </select>
   
+  <select id="findById" resultType ="Category"> 
+  <!-- resultType이 무엇이냐 modle을 넣어주자 -->
+	   	select *
+		From category	
+		where id=#{id}	
+  </select>
+  
   <insert id="insert" parameterType="Category">
 		insert into category(name)
 		value(#{name})
