@@ -10,8 +10,8 @@ public interface MenuService {
 	List<Menu> getList();
 	List<Menu> getList(int page);
 	List<Menu> getList(int page, String query);
-	List<Menu> getList(int page, int categoryId);
-	List<Menu> getList(int page, int categoryId, String query);
+	List<Menu> getList(int page, Integer categoryId);
+	List<Menu> getList(int page, Integer categoryId, String query);
 	
 //	서비스는 업무적인 단위로 이름을 지어주어야해 
 //	그래서 update보다는 다른거하자
@@ -20,8 +20,8 @@ public interface MenuService {
 	List<MenuView> getViewList();
 	List<MenuView> getViewList(int page);
 	List<MenuView> getViewList(int page, String query);
-	List<MenuView> getViewList(int page, int categoryId);
-	List<MenuView> getViewList(int page, int categoryId, String query);
+	List<MenuView> getViewList(int page, Integer categoryId);
+	List<MenuView> getViewList(int page, Integer categoryId, String query);
 	
 	Menu getById(long id);
 	

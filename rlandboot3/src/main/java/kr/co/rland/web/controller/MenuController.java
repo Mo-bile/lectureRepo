@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.rland.web.entity.MenuView;
+import kr.co.rland.web.service.CategoryService;
 import kr.co.rland.web.service.MenuService;
+import kr.co.rland.web.entity.Category;
 import kr.co.rland.web.entity.Menu;
-
 
 @Controller 
 @RequestMapping("/menu")
@@ -19,15 +21,34 @@ public class MenuController {
 
 	
 	@Autowired
-	private MenuService service;
+	private MenuService service; // 메뉴가 주인인 곳에서의 service
+	
+	@Autowired
+	private CategoryService categoryservice;
+	//다른 곳에서의 주인은... 이름 더 붙이기!
 	
 	
 	@RequestMapping("list")
-	public String list(Model model) {
+	public String list(
+			//안받을 때 디폴트값용
+			@RequestParam(name = "p", defaultValue = "1") int page,
+			//null일수 있어서 기본값은 안넣어
+			//그리고 이 경우를 대비하기 위해서 Integer로 넣어
+			@RequestParam(name = "c" ,required = false) Integer categoryId,
+			@RequestParam(name = "q",required = false) String query,
+			Model model) {
+		
+		List<Category> categoryList = categoryservice.getList();
+		
+		//여기에 맞추기 위해서 1이 아니라 3가지 값을 넣어서 보내준다
+//		List<MenuView> list = service.getViewList(1);
+		List<MenuView> list = service.getViewList(page, categoryId, query);
 		
 //		model.addAttribute("data", "Hello");
+//		System.out.println("result"+ categoryList);
 		
-		List<MenuView> list = service.getViewList(1);
+		model.addAttribute("categoryList",categoryList);
+		
 		model.addAttribute("list",list);
 		
 		//오버라이딩방법

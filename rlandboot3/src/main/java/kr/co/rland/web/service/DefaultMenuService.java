@@ -66,7 +66,7 @@ public class DefaultMenuService implements MenuService {
 	}
 
 	@Override
-	public List<Menu> getList(int page, int categoryId) {
+	public List<Menu> getList(int page, Integer categoryId) {
 		int size = 10;
 		List<Menu> list = repository.findAll(page,size,"",categoryId,null,null,null);
 		
@@ -74,7 +74,7 @@ public class DefaultMenuService implements MenuService {
 	}
 
 	@Override
-	public List<Menu> getList(int page, int categoryId, String query) {
+	public List<Menu> getList(int page, Integer categoryId, String query) {
 		int size = 10;
 		List<Menu> list = repository.findAll(page,size,query,categoryId,null,null,null);
 		
@@ -89,12 +89,21 @@ public class DefaultMenuService implements MenuService {
 	public List<MenuView> getViewList() {
 		// TODO Auto-generated method stub
 		
-		return repository.findviewAll(0,10,"",null,null,null,null);
+		System.out.println(1);
+		int size = 10;
+		int page = 0;
+		int offset = (page - 1) * 10 ; // 1(page)->0(offset) , 2->10, 3->20
+		return repository.findviewAll(offset,10,"",null,null,null,null);
 	}
 
 	@Override
 	public List<MenuView> getViewList(int page) {
+		System.out.println(2);
+		
 		int size = 10;
+		int offset = (page - 1) * 10 ; // 1(page)->0(offset) , 2->10, 3->20
+		
+//		첫번째 
 		List<MenuView> Viewlist = repository.findviewAll(page,10,null,null,null,null,null);
 				
 		return Viewlist;
@@ -102,25 +111,33 @@ public class DefaultMenuService implements MenuService {
 
 	@Override
 	public List<MenuView> getViewList(int page, String query) {
+		System.out.println(3);
+		
 		int size = 10;
-		List<MenuView> Viewlist = repository.findviewAll(page,size,query,null,null,null,null);
+		int offset = (page - 1) * 10 ; // 1(page)->0(offset) , 2->10, 3->20
+		List<MenuView> Viewlist = repository.findviewAll(offset,size,query,null,null,null,null);
 		
 		return Viewlist;
 	}
 
 	@Override
-	public List<MenuView> getViewList(int page, int categoryId) {
+	public List<MenuView> getViewList(int page, Integer categoryId) {
+		System.out.println(4);
+		
 		int size = 10;
-		List<MenuView> Viewlist = repository.findviewAll(page,size,"",categoryId,null,null,null);
+		int offset = (page - 1) * 10 ; // 1(page)->0(offset) , 2->10, 3->20
+		List<MenuView> Viewlist = repository.findviewAll(offset,size,"",categoryId,null,null,null);
 		
 		return Viewlist;
 	}
 
 	@Override
-	public List<MenuView> getViewList(int page, int categoryId, String query) {
+	public List<MenuView> getViewList(int page, Integer categoryId, String query) {
+		System.out.println(5);
 		// TODO Auto-generated method stub
-		int size = 10;
-		List<MenuView> Viewlist = repository.findviewAll(page,size,query,categoryId,null,null,null);
+		int size = 9;
+		int offset = (page - 1) * size ; // 1(page)->0(offset) , 2->10, 3->20
+		List<MenuView> Viewlist = repository.findviewAll(offset ,size, query,categoryId,null,null,null);
 		
 		return Viewlist;
 	}
