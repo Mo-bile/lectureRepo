@@ -125,4 +125,13 @@ public class DefaultMenuService implements MenuService {
 		return Viewlist;
 	}
 
+
+	@Override
+	public Menu getById(long id) {
+		// TODO Auto-generated method stub
+		Menu menu = repository.findById(id);
+		
+		return menu;
+	}
+
 }

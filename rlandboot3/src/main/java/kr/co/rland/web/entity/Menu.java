@@ -9,6 +9,7 @@ public class Menu {
 	private String name;
 	private Integer price;
 	private String img;
+	private String description;
 	
 //	@column("reg_Date")
 	private Date regDate;
@@ -71,6 +72,16 @@ public class Menu {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+	
+	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getRegDate() {

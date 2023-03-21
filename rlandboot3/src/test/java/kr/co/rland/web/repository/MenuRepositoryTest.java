@@ -28,11 +28,11 @@ class MenuRepositoryTest {
 	@Autowired
 	private MenuRepository repository;
 	
-//	@Test
+	@Test
 	void testFindAll() {
 //		assertNull(repository);
 		
-		List<Menu> list= repository.findAll();
+		List<Menu> list= repository.findAll(null, null, null, null, null, null, null);
 		System.out.println(list);
 	}
 	
@@ -75,7 +75,7 @@ class MenuRepositoryTest {
 		
 	}
 	
-	@Test
+//	@Test
 	void testCount() {
 		int count = repository.count(null, null, null);
 		System.out.println(count);

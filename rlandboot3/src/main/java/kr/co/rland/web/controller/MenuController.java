@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.rland.web.entity.MenuView;
 import kr.co.rland.web.service.MenuService;
+import kr.co.rland.web.entity.Menu;
+
 
 @Controller 
 @RequestMapping("/menu")
@@ -35,14 +37,17 @@ public class MenuController {
 //		service.getList(1, 1/*category*/);
 //		service.getList(1,1,"아");
 		
-		
-		
 		//이거하면 메인만 보이는애가 나와!
 		return "menu/list";
 	}
 
-	@RequestMapping("detail")
-	public String detail() {
+	@RequestMapping("detail")	//주소와 같게 해주면
+	public String detail(long id, Model model) {
+		
+		Menu menu = service.getById(id);
+		
+		model.addAttribute("menu", menu);
+		
 		return "menu/detail";
 	}
 	

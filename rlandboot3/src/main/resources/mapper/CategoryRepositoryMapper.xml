@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.rland.web.repository.CategoryRepository">
+  
+  <!-- 아까는 한줄에 구현해야했는데, 이제 내려쓰기도 해도 되고부담이 없어! 주석도 돼! -->
+  <!--  resultType 대신에 resultMap을 이용해-->
+  
+  <select id="findAll" resultType ="Category"> 
+  <!-- resultType이 무엇이냐 modle을 넣어주자 -->
+	   	select *
+		From category		
+  </select>
+  
+  <insert id="insert" parameterType="Category">
+		insert into category(name)
+		value(#{name})
+  </insert>
+  
+  
+  <update id="update" parameterType="Category">
+  		update category
+  		<trim prefix="SET" suffixOverrides=",">
+  			<if test="name != null">name=#{name},</if>
+			<if test="price != null">price=#{price},</if>
+			<if test="img != null">img=#{img}</if>
+		</trim>
+		where id=#{id}
+  </update>
+  
+  <!-- 이렇게 이제 쿼리문 만드는게 repo 구현이야! -->
+  <delete id="delete">
+  		delete from category where id =${id}
+  </delete>
+  
+</mapper>

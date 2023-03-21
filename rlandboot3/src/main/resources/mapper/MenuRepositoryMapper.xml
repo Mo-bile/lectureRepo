@@ -49,8 +49,6 @@
 		<if test="size != null">
 		limit #{size} offset #{offset}
 		</if>
-		
-		
   </select>
   
   <select id="findviewAll" resultMap="menuViewResultMap"> 
@@ -97,10 +95,12 @@
   </select>
   
 
-  <select id="findById" resultType="kr.co.rland.web.entity.Menu"> 
+  <select id="findById" resultType="Menu"> 
   		select *
   		from menu
-  		where id = #{id}
+  		<where>
+  		id = #{id}
+  		</where>
   </select>
   
   <select id="count" resultType="Integer">

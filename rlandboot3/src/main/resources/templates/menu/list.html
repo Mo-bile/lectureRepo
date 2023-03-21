@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" 
 		xmlns:th="http://www.thymeleaf.org"
-		xmlns:layout="http://ultrq.net.nz/thymeleaf/layout"
+		xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
 		layout:decorate="inc/layout"
 		>
 		<!-- 어떤것을 레이아웃 쓸지 지정  -->
@@ -34,21 +34,15 @@
 					<h1 class="text-normal-bold">메뉴분류</h1>
 				</div>
 				<ul>
+				
 					<li class="menu-selected">
-						<a href="/menu/list">전체</a>
+						<a href="">전체</a>
 					</li>
+					
 					<li>
-						<a href="">커피음료</a>
+						<a href="?c=1">커피음료</a>
 					</li>
-					<li>
-						<a href="">수제청</a>
-					</li>
-					<li>
-						<a href="">샌드위치</a>
-					</li>
-					<li>
-						<a href="">쿠키</a>
-					</li>
+					
 				</ul>
 			</nav>
 
@@ -65,11 +59,15 @@
 		        <div class="menu-list">
 		            <section class="menu">
 		                <form class="">
+		                <!-- 이미지 가격 바꾸자! -->
 		                    <h1><span th:text="${menu.name}">알랜드 커피</span><span style="font-size: 8px">(커피음료)</span></h1> 
 		                    <div class="menu-img-box">
-		                        <a href="detail"><img class="menu-img" src="/image/product/12.png"></a>
+		                        <a href="detail" 
+		                        	th:href="@{detail(id=${menu.id})}">
+	                        	<img class="menu-img" 
+	                        		th:src="@{/image/menu/{img}(img=${menu.img})}" src="/image/product/12.png"></a>
 		                    </div>    
-		                    <div class="menu-price">4500 원</div>
+		                    <div class="menu-price" th:text="${#numbers.formatInteger(menu.price,3,'COMMA')}+' 원'">4500 원</div>
 		                    <div class="menu-option-list">
 		                        <span class="menu-option">
 		                            <input class="menu-option-input" type="checkbox">

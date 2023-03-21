@@ -23,5 +23,6 @@ public interface MenuService {
 	List<MenuView> getViewList(int page, int categoryId);
 	List<MenuView> getViewList(int page, int categoryId, String query);
 	
+	Menu getById(long id);
 	
 }

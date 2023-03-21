@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import kr.co.rland.web.entity.Menu;
 import kr.co.rland.web.entity.MenuView;
 import kr.co.rland.web.repository.MenuRepository;
 
@@ -21,8 +22,12 @@ class DefaultMenuServiceTest {
 	void test() {
 //		service.pointUp();
 		
-		List<MenuView> list = service.getViewList(1,1);
-		System.out.println(list);
+//		List<MenuView> list = service.getViewList(1,1);
+//		System.out.println(list);
+		
+		Menu menu =service.getById(617L);
+		System.out.println(menu);
+		
 		System.out.println("작업완료");
 	}
 }
