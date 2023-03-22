@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.rland.web.entity.MenuView;
+import kr.co.rland.web.entity.RcmdMenuView;
 import kr.co.rland.web.service.CategoryService;
 import kr.co.rland.web.service.MenuService;
+import kr.co.rland.web.service.RcmdMenuService;
 import kr.co.rland.web.entity.Category;
 import kr.co.rland.web.entity.Menu;
 
@@ -26,6 +28,9 @@ public class MenuController {
 	@Autowired
 	private CategoryService categoryservice;
 	//다른 곳에서의 주인은... 이름 더 붙이기!
+	
+	@Autowired
+	private RcmdMenuService rcmdMenuService;
 	
 	
 	@RequestMapping("list")
@@ -67,8 +72,10 @@ public class MenuController {
 			long id, Model model) {
 		
 		Menu menu = service.getById(id);
+		List<RcmdMenuView> rcmdMenuServices = rcmdMenuService.getViewListMenuId((int) id);
 		
 		model.addAttribute("menu", menu);
+		model.addAttribute("rcmdMenuServices",rcmdMenuServices);
 		
 		return "menu/detail";
 	}

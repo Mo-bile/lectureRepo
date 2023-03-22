@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.rland.web.repository.RcmdMenuRepository">
+  
+  <!-- 컬럼이름 매핑  -->
+  	<resultMap id="RcmdMenuResultMap" type="RcmdMenu">
+		  <!-- column은 sql에서 오는 컬럼이고 이후
+		 	property로 Menu 자료형으로 들어온다-->
+	 	<result property="menuId" column="menu_id"/>
+	</resultMap>
+	
+  	<resultMap id="RcmdMenuViewResultMap" type="RcmdMenuView">
+	 	<result property="menuId" column="menu_id"/>
+	</resultMap>
+  
+  <!-- 아까는 한줄에 구현해야했는데, 이제 내려쓰기도 해도 되고부담이 없어! 주석도 돼! -->
+  <!--  resultType 대신에 resultMap을 이용해-->
+  
+  <select id="findViewAllByMenuId" resultMap="RcmdMenuViewResultMap"> 
+  <!-- resultType이 무엇이냐 modle을 넣어주자 -->
+	   	select *
+	  	from rcmd_menu_view
+	  	where menu_id = #{menuId}
+  </select>
+  
+  <insert id="insert" parameterType="RcmdMenu">
+		insert into rcmd_menu(menu_id, id)
+		values (#{menuID}, #{id})
+  </insert>
+  
+  <delete id="delete" parameterType="RcmdMenu">
+  		delete from menu where menu_id = #{menu_id}
+  </delete>
+  
+</mapper>

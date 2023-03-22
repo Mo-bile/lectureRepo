@@ -134,6 +134,7 @@
   		<trim prefix="SET" suffixOverrides=",">
   			<if test="name != null">name=#{name},</if>
 			<if test="price != null">price=#{price},</if>
+
 			<if test="img != null">img=#{img}</if>						
 		</trim>
 		where id=#{id}
