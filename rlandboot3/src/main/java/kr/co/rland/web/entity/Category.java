@@ -14,44 +14,45 @@ import lombok.ToString;
 //@AllArgsConstructor
 //@ToString
 
-//@Data
-//@Builder
-//@NoArgsConstructor
-//@AllArgsConstructor //
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor //
 public class Category {
-	public Category(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-
+	
+//	public Category(int id, String name) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//	}
+//
 	private int id;
 	private String name;
-	
-	public Category() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
-	}
+//	
+//	public Category() {
+//		// TODO Auto-generated constructor stub
+//	}
+//
+//	public int getId() {
+//		return id;
+//	}
+//
+//	public void setId(int id) {
+//		this.id = id;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "Category [id=" + id + ", name=" + name + "]";
+//	}
 	
 	
 	

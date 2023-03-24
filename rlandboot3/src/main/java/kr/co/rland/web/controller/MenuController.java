@@ -64,7 +64,7 @@ public class MenuController {
 //		service.getList(1,1,"아");
 		
 		//이거하면 메인만 보이는애가 나와!
-		return "menu/list";
+		return "menu/list2";
 	}
 
 	@RequestMapping("detail")	//주소와 같게 해주면
@@ -80,7 +80,7 @@ public class MenuController {
 		model.addAttribute("menu", menu);
 		model.addAttribute("rcmdMenuServices",rcmdMenuServices);
 		
-		return "menu/detail";
+		return "menu/detail2";
 	}
 	
 }
