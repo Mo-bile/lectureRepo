@@ -56,7 +56,6 @@ public class MenuController {
 		
 		Menu menu = service.getById(id);
 		
-		
 //		return "menu " + id;
 		return menu;
 		//객체를 못전달해 이를 다 표현하기 위해 문자열로 바꾸거나,바꾸는 표현식을 써야해!

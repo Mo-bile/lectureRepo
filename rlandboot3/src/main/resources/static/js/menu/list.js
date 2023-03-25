@@ -17,13 +17,15 @@ window.addEventListener("load",function(){
 		if(tagName != 'LI' && tagName != 'A') //li 가 아니면 return;
 			return; //두가지 조건 만족시 본 함수에서 나가게해서 못쓰게 해
 		
-		let el = tagName === 'LI'? e.target : e.target.parentNode;
+		let el = (tagName === 'LI')? e.target : e.target.parentNode;
+		console.log(el);
 		
 //		let queryString = "";	
 			
 //		console.log("clicked"); //return 안되면 본 내용 이해하게끔
 		
-		let categoryId = 1;
+		
+		let categoryId = el.dataset.cid;
 		
 		const request = new XMLHttpRequest();
 		
