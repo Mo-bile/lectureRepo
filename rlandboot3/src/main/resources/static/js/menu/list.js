@@ -41,7 +41,13 @@ window.addEventListener("load",function(){
 		
 		let el = (tagName === 'LI')? e.target : e.target.parentNode;
 		
+		console.log(ul.querySelector("li.menu-selected"));
 		let curLi = ul.querySelector("li.menu-selected");
+
+		console.log(curLi);
+		console.log(el);
+
+		//둘다 menu-selected 가 있을 때
 		if(curLi === el){
 			return;
 		}
@@ -78,27 +84,32 @@ window.addEventListener("load",function(){
 			//while(menuList.removeChild(menuList.firstElementChild)){
 			//menuList.removeChild(menuList.firstElementChild);
 			//}
+			// while(menuList.firstElementChild){
+			// 	menuList.firstElementChild.remove;
+			// }
+
 			//menuList.replaceChildren();
 			
 			//기존목록을 지우고 목록을 지우는 방법2
 			//menuList.textContent = "<span style ='color:blue'>test hello</span>";
 			//menuList.innerText = "<span style ='color:blue'>test hello</span>";
 			//menuList.innerHTML = "<span style ='color:blue'>test hello</span>";
-			menuList.innerHTML = "";
+			// menuList.innerHTML = "";
+
 			
 			//목록을 만들어 채우기
 			//방법1 : DOM객체를 직접 생성해서 채우기
 			
 	            
-//			let menuSection = document.createElement("section");
-//			menuList.className = "menu";
-//			
-//			let form = document.createElement("from");
-//			form.className = ""; //왜 ""?
-//			
-////			menuSection.appendChild(form); //노드 인터페스 이용한 방법
-//			menuSection.append(form);// 엘레먼트 인터페이스 이용방법
-//			menuList.append(menuSection);
+// 			let menuSection = document.createElement("section");
+// 			menuList.className = "menu";
+			
+// 			let form = document.createElement("from");
+// 			form.className = ""; //왜 ""?
+			
+// //			menuSection.appendChild(form); //노드 인터페스 이용한 방법
+// 			menuSection.append(form);// 엘레먼트 인터페이스 이용방법
+// 			menuList.append(menuSection);
 			
 			//방법2 : 문자열을 이용한 객체생성 
 			
