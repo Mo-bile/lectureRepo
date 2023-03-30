@@ -18,9 +18,9 @@
 				<legend>계산기{{x}} 입력폼</legend>
 				<div>
 				<label>x:</label>
-	                <input dir="rtl" v-model.trim.numbers="x" @input="calcHandler">
-	                <label>y:</label>
-	                <input dir="rtl" v-model.trim.numbers="y">
+				<input dir="rtl" v-model.trim.number="x" @input="calcHandler">
+				<label>y:</label>
+				<input dir="rtl" v-model.trim.number="y">
 	                <span>=</span>
 	                <span v-text="z"></span>
 	            </div>
@@ -28,8 +28,8 @@
 	            <hr>
 	
 	            <div>
-	                <input type="submit" value="초기화" @click.prevent.onece ="resetHandler">
-	                <input type="submit" value="계산하기" @click.prevent.onece ="calcHandler">
+	                <input type="submit" value="초기화" @click.prevent.once ="resetHandler">
+	                <input type="submit" value="계산하기" @click.prevent.once ="calcHandler">
 	            </div>
 	        </fieldset>
 	    </form>
