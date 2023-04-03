@@ -2,7 +2,24 @@ Vue
 .createApp({
 	data(){
 		return{
-			test:"hello"
+			test:"hello",
+			//모델을 준비해
+			list: [
+				{id:1,
+				name:"아메리카노",
+				price:5000
+				},
+				{id:2,
+				name:"카페라떼",
+				price:5500
+				},
+				// {id:3,
+				// name:"카페모카",
+				// price:5500
+				// },
+			],
+			isShowRegForm:true,
+			menu:{name:"우좌진", price:9900},
 		};
 	},
 
@@ -10,81 +27,80 @@ Vue
 	methods:{
 		//이름설정하고 핸들러 받기!
 		 categoryClickHandler(e){
-		// 	this.load(e.target.dataset.id, function(){
-		// 		console.log("데이터 도착?");
-		// 	});
-		// console.log("click");
-		// await this.load(e.target.dataset.id); //기다릴테니까 난 기다렸다가 할거야 -> 동기형으로
-		// console.log("데이터가 도착 한 후에 할일");
-		//데이터를 요청하고 그 요청이 도착하면 할 일이 여기있는거야
-		// 그런데, 도착하기 전에 실행되는... 불상사
-
-			this.load(2);
+			this.list.push({id:4, name:"디카 아메", price:5000})
 		},
 
-//비동기식 promise 방법
-		// async load(cid){
-		// 	let response = await fetch("/menus");
-		// 	let list = await response.json();
-		// 	console.log(list);
-
-		// //옛날에 쓰던 콜백방식을 한것
-		// 	// return new Promise(resolve=>{
-		// 	// 	// async load(cid){
-		// 	// 	// load(cid, callback){
-		// 	// 		//콜백함수를 사용하는 request객체의 send();
-		// 	// 	setTimeout(() => {
-		// 	// 		console.log("load");
-		// 	// 		// callback();
-		// 	// 	}, 3000);
-		// 	// });
-		// 	//XHR (XmlHttpRequest)
-		// 	//-callback을 이용한 비동기처리
-
-		// 	//Fetch API
-		// 	//-promise 이용한 비동기처리
-		// }
-
-//동기식
-//이방식은 단계별로 하는거야
 		load(cid){
-											//이 함수를 이렇게 하는건 불편해
-											//따로 담을 그릇 만들겠다고
-											//이게 promise야!
-			// let promise = fetch("/menus", function(response) {console.log("도착?")});
-			
-			
-			//콜백 주워담는걸 만들자 이게 promise의 또 다른 방식이야
-			let promise = fetch("/menus99");
+			let promise = fetch("/menus");
 			promise //그래서 promise에다가 함수를 담아주자!
 			.then(qq => {
 
-				// console.log(qq.json());
 				return qq.json();
-				// console.log("도착했니?");
-				// let promise = qq.json();
-				// promise
-				// .then(ww=>{
-				// 	console.log(ww);
-				// })
 			})
-			.then(ww =>{
-				// console.log(ww);
-				// console.log(ww[0]);
-				return ww[0];
+			.then(list =>{
+				// return ww[0];
+				console.log("list 넣는 시점")
+				this.list = list;
 			})
-			.then(ee =>{
-				console.log(ee.name);
-			})
+			// .then(ee =>{
+			// 	console.log(ee.name);
+			// })
 			.catch(error=>{
 				console.log("12345678987654321");
 				console.log(error);
 			})
 			
-			// , function() {console.log("도착?")});
-		}
-	}
+		},
 
+		menuAddHandler(e){
+			// this.list.push({id:4, name:"디카 아메", price:5000})
+			// this.isShowRegForm = (this.isShowRegForm == true)? false : true;
+			this.isShowRegForm = !this.isShowRegForm;
+			console.log("메뉴 show");
+			
+		},
+
+		menuSaveHandler(e){
+			var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			var raw = JSON.stringify(this.menu)
+
+			var requestOptions = {
+			method: 'POST',
+			headers: myHeaders,
+			body: raw,
+			redirect: 'follow'
+			};
+
+			fetch("http://localhost:8080/menus?", requestOptions)
+			.then(response => response.text())
+			.then(result => {
+				if(result ==="OK")
+					this.load();
+				// console.log(result);
+				// result;
+				})
+			.catch(error => console.log('error', error));
+			
+		}
+
+
+	},
+
+	//위 옵션들과 동급이여서 여기에 두는거야!
+	beforeCreate(){console.log("beforeCreate")},
+    created(){console.log("created")},
+    beforeMount(){console.log("beforeMount")},
+    mounted(){
+	
+		this.load();
+		console.log("mounted")
+	},
+    beforeUpdate(){console.log("beforeUpdate")},
+    updated(){console.log("updated")},
+    beforeUnmount(){console.log("beforeUnmount")},
+    unmounted(){console.log("unmounted")}
 
 })
 .mount("#main-section");

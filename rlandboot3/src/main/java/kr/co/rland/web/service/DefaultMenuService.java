@@ -137,7 +137,11 @@ public class DefaultMenuService implements MenuService {
 		// TODO Auto-generated method stub
 		int size = 9;
 		int offset = (page - 1) * size ; // 1(page)->0(offset) , 2->10, 3->20
-		List<MenuView> Viewlist = repository.findviewAll(offset ,size, query,categoryId,null,null,null);
+		
+		String orderField = "reg_date";
+		String order = "desc";
+		
+		List<MenuView> Viewlist = repository.findviewAll(offset ,size, query,categoryId,null,orderField, order);
 		
 		return Viewlist;
 	}
@@ -149,6 +153,14 @@ public class DefaultMenuService implements MenuService {
 		Menu menu = repository.findById(id);
 		
 		return menu;
+	}
+
+
+	@Override
+	public void add(Menu menu) {
+		// TODO Auto-generated method stub
+		repository.insert(menu);
+		
 	}
 
 }
